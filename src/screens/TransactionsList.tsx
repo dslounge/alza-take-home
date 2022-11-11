@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { TransactionItem } from "../components/TransactionItem";
 import { ListFooter } from "../components/ListFooter";
+import { TransactionsHeader } from "../components/TransactionsHeader";
 import { Transaction } from "../types";
 import { HEADER_COLOR, SEPARATOR } from "../colors";
 import { useTransactions } from "../hooks/useTransactions";
@@ -15,14 +16,8 @@ const List = styled.FlatList`
   flex: 1;
 `;
 
-const Header = styled.Text`
-  font-size: 20px;
-  color: ${HEADER_COLOR};
-`;
-
 const ItemSeparator = styled.View`
-  height: 1px;
-  border: 1px solid ${SEPARATOR};
+  height: 4px;
 `;
 
 export const TransactionList = () => {
@@ -49,7 +44,6 @@ export const TransactionList = () => {
 
   return (
     <Component>
-      <Header>Your Transactions</Header>
       <List
         data={transactions}
         renderItem={renderItem}
@@ -62,6 +56,7 @@ export const TransactionList = () => {
             hasMore={hasMore}
           />
         }
+        ListHeaderComponent={<TransactionsHeader />}
         ItemSeparatorComponent={() => <ItemSeparator />}
       />
     </Component>

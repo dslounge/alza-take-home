@@ -1,8 +1,6 @@
 const endpoint = "https://assignment.alza.app/transactions";
 
 export const getTransactions = async (startingAfter = null) => {
-  console.log("--getTransactions--");
-
   let url = startingAfter
     ? `${endpoint}?startingAfter=${startingAfter}`
     : endpoint;
