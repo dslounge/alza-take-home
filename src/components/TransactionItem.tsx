@@ -81,7 +81,7 @@ export const TransactionItem = ({ transaction }: TransactionItemProps) => {
         <Description>{description}</Description>
         <Tags>
           {tags.map((tag) => {
-            return <Tag>{tag}</Tag>;
+            return <Tag key={tag}>{tag}</Tag>;
           })}
         </Tags>
       </Content>
