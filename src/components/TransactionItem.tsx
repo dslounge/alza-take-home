@@ -7,6 +7,7 @@ import {
   ITEM_BACKGROUND,
   WHITE,
   DATE_LABEL,
+  TAG_BACKGROUND,
 } from "../colors";
 
 const Component = styled.View`
@@ -28,7 +29,7 @@ const Title = styled.Text`
 
 const Description = styled.Text`
   color: ${WHITE};
-  font-size: 10px;
+  font-size: 12px;
 `;
 
 const Date = styled.Text`
@@ -46,6 +47,19 @@ const Amount = styled.Text`
   font-weight: bold;
 `;
 
+const Tags = styled.View`
+  flex-direction: row;
+  margin-top: 8px;
+`;
+
+const Tag = styled.Text`
+  color: white;
+  background-color: ${TAG_BACKGROUND};
+  margin-right: 5px;
+  font-size: 12px;
+  padding: 4px;
+`;
+
 interface TransactionItemProps {
   transaction: Transaction;
 }
@@ -55,7 +69,7 @@ export const TransactionItem = ({ transaction }: TransactionItemProps) => {
 
   // all the transactions seem to be USD right now
   const dollarAmount = amount / 100;
-  const amountLabel = `$${dollarAmount} ${currency}`;
+  const amountLabel = `$${dollarAmount} ${currency.toUpperCase()}`;
 
   console.log(date);
   const dateLabel = dayjs.unix(date).format("MMM DD, YYYY");
@@ -66,6 +80,11 @@ export const TransactionItem = ({ transaction }: TransactionItemProps) => {
         <Date>{dateLabel}</Date>
         <Title>{title}</Title>
         <Description>{description}</Description>
+        <Tags>
+          {tags.map((tag) => {
+            return <Tag>{tag}</Tag>;
+          })}
+        </Tags>
       </Content>
       <AmountContainer>
         <Amount>{amountLabel}</Amount>

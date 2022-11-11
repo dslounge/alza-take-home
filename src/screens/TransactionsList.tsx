@@ -17,7 +17,7 @@ const List = styled.FlatList`
 `;
 
 const ItemSeparator = styled.View`
-  height: 4px;
+  height: 8px;
 `;
 
 export const TransactionList = () => {
@@ -58,6 +58,7 @@ export const TransactionList = () => {
         }
         ListHeaderComponent={<TransactionsHeader />}
         ItemSeparatorComponent={() => <ItemSeparator />}
+        showsVerticalScrollIndicator={false}
       />
     </Component>
   );
