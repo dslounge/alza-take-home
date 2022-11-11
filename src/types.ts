@@ -1,9 +1,9 @@
-type TransactionResponse = {
+export type TransactionResponse = {
   transactions: Transaction[];
   hasMore: boolean;
 };
 
-type Transaction = {
+export type Transaction = {
   amount: number;
   currency: string;
   date: number;

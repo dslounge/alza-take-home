@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components/native";
-import { getTransactions } from "../data/getTransactions";
 import { TransactionItem } from "../components/TransactionItem";
 import { ListFooter } from "../components/ListFooter";
+import { Transaction } from "../types";
+import { HEADER_COLOR, SEPARATOR } from "../colors";
+import { useTransactions } from "../hooks/useTransactions";
 
 const Component = styled.View`
   flex: 1;
@@ -15,37 +17,34 @@ const List = styled.FlatList`
 
 const Header = styled.Text`
   font-size: 20px;
+  color: ${HEADER_COLOR};
+`;
+
+const ItemSeparator = styled.View`
+  height: 1px;
+  border: 1px solid ${SEPARATOR};
 `;
 
 export const TransactionList = () => {
-  const [transactions, setTransactions] = useState([]);
+  const { isLoading, hasMore, loadMore, transactions } = useTransactions();
 
-  useEffect(() => {
-    const loader = async () => {
-      console.log("weeooo");
-      const data = await getTransactions();
-      console.log("--got transactions--");
-      console.log(data);
-      const { hasMore, transactions } = data;
-      setTransactions(transactions);
-    };
-    loader();
-  }, []);
-
-  const isLoading = false;
   const numItems = transactions.length;
 
   const renderItem = ({ item, index }) => {
-    console.log(item);
     return <TransactionItem transaction={item} />;
   };
 
-  const keyExtractor = (item) => {
-    return item.id;
+  const keyExtractor = (item: Transaction) => {
+    const { id } = item;
+    return id;
   };
 
   const onEndReached = () => {
-    console.log("--onEndReached--");
+    if (hasMore && !isLoading) {
+      console.log("end reached, load more data here");
+      loadMore();
+    }
+    console.log("end reached but not loading");
   };
 
   return (
@@ -59,6 +58,7 @@ export const TransactionList = () => {
         ListFooterComponent={
           <ListFooter isLoading={isLoading} numItems={numItems} />
         }
+        ItemSeparatorComponent={() => <ItemSeparator />}
       />
     </Component>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components/native";
 
 const Component = styled.View`
-  background-color: white;
   margin: 2px;
   padding: 8px;
   height: 75px;
@@ -10,7 +9,10 @@ const Component = styled.View`
   justify-content: center;
 `;
 
-const Label = styled.Text``;
+const Label = styled.Text`
+  color: white;
+`;
+
 interface ListFooterProps {
   isLoading: boolean;
   numItems: number;

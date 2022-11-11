@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Transaction } from "../types";
 
 const Component = styled.View`
-  background-color: white;
-  margin: 2px;
-  padding: 8px;
+  padding: 8px 0px;
 `;
 
 const Title = styled.Text``;
@@ -18,7 +17,6 @@ interface TransactionItemProps {
 
 export const TransactionItem = ({ transaction }: TransactionItemProps) => {
   const { title, tags, id, description, date, currency, amount } = transaction;
-  console.log(currency);
 
   return (
     <Component>
