@@ -71,7 +71,6 @@ export const TransactionItem = ({ transaction }: TransactionItemProps) => {
   const dollarAmount = amount / 100;
   const amountLabel = `$${dollarAmount} ${currency.toUpperCase()}`;
 
-  console.log(date);
   const dateLabel = dayjs.unix(date).format("MMM DD, YYYY");
 
   return (
