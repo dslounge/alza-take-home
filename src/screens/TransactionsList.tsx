@@ -56,7 +56,11 @@ export const TransactionList = () => {
         keyExtractor={keyExtractor}
         onEndReached={onEndReached}
         ListFooterComponent={
-          <ListFooter isLoading={isLoading} numItems={numItems} />
+          <ListFooter
+            isLoading={isLoading}
+            numItems={numItems}
+            hasMore={hasMore}
+          />
         }
         ItemSeparatorComponent={() => <ItemSeparator />}
       />

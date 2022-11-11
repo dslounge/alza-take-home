@@ -1,4 +1,5 @@
 import React from "react";
+import { ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 
 const Component = styled.View`
@@ -15,15 +16,24 @@ const Label = styled.Text`
 
 interface ListFooterProps {
   isLoading: boolean;
+  hasMore: boolean;
   numItems: number;
 }
 
-export const ListFooter = ({ numItems, isLoading }: ListFooterProps) => {
-  const footerLabel = `${numItems} transactions`;
+export const ListFooter = ({
+  numItems,
+  hasMore,
+  isLoading,
+}: ListFooterProps) => {
+  let footerLabel = `${numItems} transactions`;
+  if (hasMore) {
+    footerLabel = `${footerLabel}. More to load...`;
+  }
 
   return (
     <Component>
       <Label>{footerLabel}</Label>
+      {isLoading && <ActivityIndicator />}
     </Component>
   );
 };
