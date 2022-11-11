@@ -4,3 +4,4 @@ export const HEADER_COLOR = "#E5FD98";
 export const WHITE = "#E8E8E8";
 export const ITEM_BACKGROUND = "#1D2229";
 export const AMOUNT_BACKGROUND = "#242E38";
+export const DATE_LABEL = "#BCACFB"

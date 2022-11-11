@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components/native";
+import dayjs from "dayjs";
 import { Transaction } from "../types";
-import { AMOUNT_BACKGROUND, ITEM_BACKGROUND, WHITE } from "../colors";
+import {
+  AMOUNT_BACKGROUND,
+  ITEM_BACKGROUND,
+  WHITE,
+  DATE_LABEL,
+} from "../colors";
 
 const Component = styled.View`
   padding: 16px;
@@ -16,14 +22,18 @@ const Content = styled.View``;
 const Title = styled.Text`
   color: ${WHITE};
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
+  margin: 5px 0px;
 `;
+
 const Description = styled.Text`
   color: ${WHITE};
   font-size: 10px;
 `;
+
 const Date = styled.Text`
-  color: ${WHITE};
+  color: ${DATE_LABEL};
+  font-size: 12px;
 `;
 
 const AmountContainer = styled.View`
@@ -47,10 +57,13 @@ export const TransactionItem = ({ transaction }: TransactionItemProps) => {
   const dollarAmount = amount / 100;
   const amountLabel = `$${dollarAmount} ${currency}`;
 
+  console.log(date);
+  const dateLabel = dayjs.unix(date).format("MMM DD, YYYY");
+
   return (
     <Component>
       <Content>
-        <Date>{date}</Date>
+        <Date>{dateLabel}</Date>
         <Title>{title}</Title>
         <Description>{description}</Description>
       </Content>

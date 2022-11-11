@@ -9,7 +9,7 @@ import { useTransactions } from "../hooks/useTransactions";
 
 const Component = styled.View`
   flex: 1;
-  padding: 8px;
+  padding: 16px;
 `;
 
 const List = styled.FlatList`
